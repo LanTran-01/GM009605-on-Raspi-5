@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 0 890 400" width="890" height="400" font-family="Helvetica, Arial, sans-serif">
+  <title>GM009605 OLED to Raspberry Pi 5 wiring</title>
+  <rect x="-50" width="890" height="400" fill="#ffffff"/>
+
+  <!-- ===== Raspberry Pi 5 header (pins 1-10) ===== -->
+  <text x="135" y="28" font-size="15" font-weight="bold" text-anchor="middle" fill="#1b5e20">Raspberry Pi 5</text>
+  <text x="135" y="46" font-size="11" text-anchor="middle" fill="#555">40-pin header (pins 1-10, USB ports facing down)</text>
+  <rect x="88" y="62" width="94" height="200" rx="6" fill="#2e7d32" stroke="#1b5e20" stroke-width="2"/>
+
+  <!-- odd column x=110, even column x=160, rows y=80..240 -->
+  <g stroke="#7a5c00" stroke-width="1.5">
+    <rect x="102" y="72" width="16" height="16" fill="#ffd54f"/> <!-- pin 1 is square -->
+    <circle cx="160" cy="80"  r="8" fill="#ffd54f"/>
+    <circle cx="110" cy="120" r="8" fill="#ffd54f"/>
+    <circle cx="160" cy="120" r="8" fill="#ffd54f"/>
+    <circle cx="110" cy="160" r="8" fill="#ffd54f"/>
+    <circle cx="160" cy="160" r="8" fill="#ffd54f"/>
+    <circle cx="110" cy="200" r="8" fill="#e0e0e0"/>
+    <circle cx="160" cy="200" r="8" fill="#e0e0e0"/>
+    <circle cx="110" cy="240" r="8" fill="#e0e0e0"/>
+    <circle cx="160" cy="240" r="8" fill="#e0e0e0"/>
+  </g>
+
+  <g font-size="12" text-anchor="end" fill="#222">
+    <text x="80" y="84"><tspan font-weight="bold">3V3</tspan>  1</text>
+    <text x="80" y="124"><tspan font-weight="bold">GPIO2 / SDA</tspan>  3</text>
+    <text x="80" y="164"><tspan font-weight="bold">GPIO3 / SCL</tspan>  5</text>
+    <text x="80" y="204" fill="#888">GPIO4  7</text>
+    <text x="80" y="244" fill="#888">GND  9</text>
+  </g>
+  <g font-size="12" fill="#888">
+    <text x="192" y="84">2  5V  (do not use)</text>
+    <text x="192" y="124">4  5V  (do not use)</text>
+    <text x="192" y="152" fill="#222">6  <tspan font-weight="bold">GND</tspan></text>
+    <text x="192" y="204">8  GPIO14</text>
+    <text x="192" y="244">10  GPIO15</text>
+  </g>
+
+  <!-- ===== Wires ===== -->
+  <g fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- VCC: pin 1 -> VCC -->
+    <path d="M110,80 V58 H480 V120 H590" stroke="#d32f2f"/>
+    <!-- GND: pin 6 -> GND -->
+    <path d="M160,160 H590" stroke="#212121"/>
+    <!-- SCL: pin 5 -> SCL -->
+    <path d="M110,160 H143 V290 H500 V200 H590" stroke="#f9a825"/>
+    <!-- SDA: pin 3 -> SDA -->
+    <path d="M110,120 H127 V310 H520 V240 H590" stroke="#1565c0"/>
+  </g>
+
+  <!-- ===== GM009605 module ===== -->
+  <rect x="570" y="80" width="230" height="250" rx="10" fill="#0d47a1" stroke="#082f6b" stroke-width="2"/>
+  <text x="685" y="70" font-size="15" font-weight="bold" text-anchor="middle" fill="#0d47a1">GM009605 0.96" OLED</text>
+  <g stroke="#7a5c00" stroke-width="1.5" fill="#ffd54f">
+    <circle cx="590" cy="120" r="8"/>
+    <circle cx="590" cy="160" r="8"/>
+    <circle cx="590" cy="200" r="8"/>
+    <circle cx="590" cy="240" r="8"/>
+  </g>
+  <g font-size="13" font-weight="bold" fill="#ffffff">
+    <text x="606" y="125">VCC</text>
+    <text x="606" y="165">GND</text>
+    <text x="606" y="205">SCL</text>
+    <text x="606" y="245">SDA</text>
+  </g>
+  <rect x="650" y="110" width="135" height="150" rx="3" fill="#000" stroke="#555"/>
+  <text x="717" y="175" font-size="13" font-family="monospace" text-anchor="middle" fill="#4fc3f7">GM009605 OK</text>
+  <text x="717" y="195" font-size="10" font-family="monospace" text-anchor="middle" fill="#4fc3f7">128 x 64</text>
+  <text x="685" y="300" font-size="11" text-anchor="middle" fill="#bbdefb">SSD1306  ·  I2C 0x3C</text>
+
+  <!-- ===== Legend ===== -->
+  <g font-size="12" fill="#222">
+    <rect x="40"  y="352" width="22" height="6" fill="#d32f2f"/><text x="68"  y="359">VCC → pin 1 (3.3 V)</text>
+    <rect x="220" y="352" width="22" height="6" fill="#212121"/><text x="248" y="359">GND → pin 6</text>
+    <rect x="360" y="352" width="22" height="6" fill="#f9a825"/><text x="388" y="359">SCL → pin 5 (GPIO3)</text>
+    <rect x="540" y="352" width="22" height="6" fill="#1565c0"/><text x="568" y="359">SDA → pin 3 (GPIO2)</text>
+  </g>
+  <text x="420" y="386" font-size="11" text-anchor="middle" fill="#b71c1c">Check the silkscreen: some GM009605 batches swap the VCC and GND positions.</text>
+</svg>

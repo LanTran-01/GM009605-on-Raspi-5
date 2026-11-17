@@ -1,0 +1,11 @@
+# Let members of the "i2c" group use the GM009605 driver without sudo.
+#
+#   /dev/gm009605             -> group i2c, mode 0660
+#   sysfs control attributes  -> group i2c, group-writable
+#
+# Install: sudo cp 99-gm009605.rules /etc/udev/rules.d/ && sudo udevadm control --reload
+
+KERNEL=="gm009605*", SUBSYSTEM=="misc", GROUP="i2c", MODE="0660"
+
+ACTION=="bind", SUBSYSTEM=="i2c", DRIVER=="gm009605", \
+  RUN+="/bin/sh -c 'cd /sys%p && for a in contrast invert display_on flip clear text test_pattern; do chgrp i2c $a && chmod g+w $a; done'"

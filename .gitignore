@@ -1,0 +1,22 @@
+# user-space build output
+/test/gm009605_test
+
+# kernel module build output
+*.o
+*.ko
+*.mod
+*.mod.c
+*.cmd
+.module-common.o
+Module.symvers
+modules.order
+.tmp_versions/
+
+# device tree
+*.dtbo
+
+# editor / OS
+*.swp
+*~
+.vscode/
+.DS_Store

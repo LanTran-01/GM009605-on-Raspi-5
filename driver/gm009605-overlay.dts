@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Device Tree overlay: GM009605 128x64 OLED on the Raspberry Pi header I2C
+ * bus (GPIO2 = SDA, GPIO3 = SCL, exposed as /dev/i2c-1).
+ *
+ * Build:   dtc -@ -I dts -O dtb -o gm009605.dtbo gm009605-overlay.dts
+ * Install: sudo cp gm009605.dtbo /boot/firmware/overlays/
+ * Enable:  add to /boot/firmware/config.txt
+ *              dtoverlay=gm009605
+ *          or, for a module strapped to 0x3D:
+ *              dtoverlay=gm009605,addr=0x3d
+ */
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2712", "brcm,bcm2711", "brcm,bcm2835";
+
+	fragment@0 {
+		target = <&i2c_arm>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+
+			gm009605: oled@3c {
+				compatible = "lantran,gm009605";
+				reg = <0x3c>;
+				status = "okay";
+			};
+		};
+	};
+
+	__overrides__ {
+		addr = <&gm009605>, "reg:0";
+	};
+};
